@@ -1,0 +1,56 @@
+organization table: 
+
+columns: organization_key, organization_code, parent_organization_code, organization_name
+primary key: organization_key
+
+Samples: 
+1
+STO.123
+IKEA_NL
+Store Amsterdam
+
+2
+IKEA_NL
+IKEA
+IKEA Netherlandds
+
+
+service_skill: 
+
+columns: service_skill_key, service_skill_id, organization_code, service_skill_desc, service_skill_type
+primary key: service_skill_key
+
+item: 
+
+columns: item_key, item_id, item_desc, uom, unit_height, unit_weight, unit_breadth, is_home_delivery_eligible, is_collect_eligible, transport_method_type
+primary key: item_key
+
+INSERT INTO organization 
+(organization_key, organization_code, organization_name, parent_organization_code)
+VALUES (6,'CDC.123','Paris CDC','');
+
+HOME_DELIVERY: 
+
+SGR100: Standard Truck Home Delivery
+SGR101: Express Truck Home Delivery
+SGR200: Standard Parcel Home Delivery
+SGR201: Express Parcel Home Delivery
+
+CLICK_COLLECT: 
+
+SGR300: Pick Up in Store
+SGR301: Pick Up in Locker
+SGR302: Pick Up External Pick Up Point
+
+UPDATE service_skill
+SET transport_method_type='PARCEL'
+WHERE service_skill_key in (3,4);
+
+INSERT INTO service_skill (service_skill_key, service_skill_id, organization_code,service_skill_desc,service_skill_type) 
+VALUES (7,'SGR302','IKEA_NL','Pick Up External Pick Up Point','CLICK_COLLECT');
+
+INSERT INTO item (item_key, item_id, item_desc, uom, unit_height, unit_weight, unit_breadth, is_home_delivery_eligible, is_collect_eligible, transport_method_type, organization_code, item_type)
+VALUES 
+(3,'102','High-speed HDMI cable','Piece','123.212','234.234','120.932','Y','Y','TRUCK','IKEA_NL','ART');
+
+CREATE TABLE item (item_key int PRIMARY KEY, item_id varchar(50), item_desc varchar(50), uom varchar(20), unit_height numeric(10, 3), unit_weight numeric(10,3), unit_breadth numeric(10,3),is_home_delivery_eligible varchar(1), is_collect_eligible varchar(1), transport_method_type varchar(20));

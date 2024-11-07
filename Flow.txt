@@ -1,0 +1,33 @@
+validateDataFromOrgTable
+
+1) Take the seller code from the request message
+2) start a db connection
+3) form a query to fetch a row from organization table wrt seller code
+4) Close the db connection and the cursor
+5) validate if row is None or Null
+6) If data is present, use this to validate: request message country code
+7) If invalid, return error
+
+validateRemainingData
+
+Attributes to validate: phone number, payment status and service_skill_type
+
+1) length of phone number should be exactly 10(no country code).
+2) payment type can be only: {online, cash, cod}
+3) payment status: 
+    paid: online & cash
+    unpaid: cod
+
+validateDataFromServiceSkillTable
+validateDataFromItemTable
+validateShipNode
+
+Bad Request: 400
+Internal Server Error: 500
+Not Found: 404
+Unauthorized: 401
+Gateway Timeout: 504
+Too Many Requests: 429
+
+
+
