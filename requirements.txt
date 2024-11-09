@@ -1,0 +1,14 @@
+#requirements & improvements:
+    #change wrt cloud: input, db access
+    #Try except block around db invoke
+    #Try except block around implementation
+    #Stack trace while catching exceptions
+    #import local db into gcp
+    #deploy on gcp
+    #logging
+    #improve logic for each method
+    #improve control flow
+    #improve schema
+    #improve error codes/desc/desc/info
+    #stress test
+    #populate db with dummy data
