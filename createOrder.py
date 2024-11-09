@@ -9,14 +9,6 @@ class CreateOrderAPI(object):
         pass
 
     def createOrder(self, orderCreationObj:CreateOrderRequest):
-    
-            #orderCreationObj=parseRequest()
-            #changes to accept req as object
-            #requestObj=CreateOrderRequest(**orderCreationObj)
-            #file_path='sampleMsg.json'
-            #equestObj=CreateOrderRequest.model_validate_json(orderCreationObj)
-            #print(requestObj)
-            #changes to accept req as object
 
             didValidationPass=True
             valiationHelper=RequestValidation()
@@ -63,12 +55,7 @@ class CreateOrderAPI(object):
                 response.setResponseAttributes(orderCreationObj)
             return response.successResponse()
       
-#app=CreateOrderAPI()
-#app.createOrder()
-
-
 #requirements & improvements:
-    #use req as object
     #change wrt cloud: input, db access
     #Try except block around db invoke
     #Try except block around implementation
