@@ -1,6 +1,8 @@
 import json
 from jsonschema import validate, ValidationError
 
+#deprecated. orderCreationSchema and sampleMsg are also not used anymore.
+
 def parseRequest() ->dict:
         schema_path='orderCreationSchema.json'
         file_path='sampleMsg.json' #insert topic name here?
