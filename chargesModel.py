@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-@dataclass
-class Charges(object):
+class Charges(BaseModel):
     total: int
     itemTotal: int
     deliveryTotal: int

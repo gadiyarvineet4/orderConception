@@ -1,9 +1,9 @@
 import psycopg2
 import json
+from createOrderRequest import CreateOrderRequest
 
-def persistToDB(orderMSG) -> None: 
-    orderNumber=orderMSG["orderNumber"]
-    orderJSON=json.dumps(orderMSG)
+def persistToDB(orderMSG:CreateOrderRequest) -> None: 
+    orderDict=str(orderMSG)
 
     conn=psycopg2.connect(
         dbname="postgres",
@@ -14,7 +14,7 @@ def persistToDB(orderMSG) -> None:
     )       
     cursor=conn.cursor()
     query="INSERT INTO customerOrder (ordernumber,orderdata) VALUES (%s,%s)"
-    cursor.execute(query,(orderNumber,orderJSON))
+    cursor.execute(query,(orderMSG.orderNumber,orderDict))
     conn.commit()
     cursor.close()
     conn.close()

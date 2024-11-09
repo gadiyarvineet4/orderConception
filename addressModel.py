@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-@dataclass
-class Address(object):
+class Address(BaseModel):
     
     customerFirstName: str
     customerLastName: str

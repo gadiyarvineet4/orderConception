@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-@dataclass
-class ItemLines(object):
+class ItemLines(BaseModel):
     itemType: str
     itemId: int
     itemName: str

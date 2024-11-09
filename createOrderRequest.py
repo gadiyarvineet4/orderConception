@@ -1,12 +1,13 @@
-from dataclasses import dataclass
-from requestAddress import Address
-from requestCharges import Charges
-from requestPaymentInfo import PaymentInfo
-from requestItemLines import ItemLines
-from requestWorkOrder import WorkOrder
+from addressModel import Address
+from chargesModel import Charges
+from paymentInfoModel import PaymentInfo
+from itemLinesModel import ItemLines
+from workOrderModel import WorkOrder
+from pydantic import BaseModel
+from typing import List
 
-@dataclass
-class CreateOrderRequest(object):
+
+class CreateOrderRequest(BaseModel):
 
     orderNumber: int
     countryCode: str
@@ -17,5 +18,5 @@ class CreateOrderRequest(object):
     billToAddress: Address
     charges: Charges
     paymentInfo: PaymentInfo
-    itemLines: ItemLines
+    itemLines: List[ItemLines]
     workOrder: WorkOrder

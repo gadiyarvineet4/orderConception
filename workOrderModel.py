@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-@dataclass
-class WorkOrder(object):
+class WorkOrder(BaseModel):
     workOrderNumber: int
     workOrderSGR: str
     appointmentStartTime: str

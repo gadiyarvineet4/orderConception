@@ -1,65 +1,72 @@
 from parseRequest import parseRequest
 from persistToDB import persistToDB
 from createOrderResponse import CreateOrderResponse
+from createOrderRequest import CreateOrderRequest
 from requestValidation import RequestValidation
+from pydantic import BaseModel
 
 class CreateOrderAPI(object):
 
     def __init__(self) -> None:
         pass
 
-    def createOrder(self):
+    def createOrder(self, orderCreationObj):
     
-            orderCreationMSG=parseRequest()
+            #orderCreationObj=parseRequest()
+            #changes to accept req as object
+            #requestObj=CreateOrderRequest(**orderCreationObj)
+            #file_path='sampleMsg.json'
+            #equestObj=CreateOrderRequest.model_validate_json(orderCreationObj)
+            #print(requestObj)
+            #changes to accept req as object
+
             didValidationPass=True
             valiationHelper=RequestValidation()
             
             if didValidationPass:
                
-               didValidationPass, errorResponse=valiationHelper.validateCustomerPhoneAndPaymentInfo(orderCreationMSG,didValidationPass)
+               didValidationPass, errorResponse=valiationHelper.validateCustomerPhoneAndPaymentInfo(orderCreationObj,didValidationPass)
                
                if didValidationPass is False:
                    return errorResponse
                      
             if didValidationPass:
 
-                didValidationPass, errorResponse=valiationHelper.validateDataFromOrgTable(orderCreationMSG,didValidationPass)
+                didValidationPass, errorResponse=valiationHelper.validateDataFromOrgTable(orderCreationObj,didValidationPass)
                
                 if didValidationPass is False:
                    return errorResponse
                    
             if didValidationPass:
 
-                didValidationPass, errorResponse=valiationHelper.validateShipNode(orderCreationMSG,didValidationPass)
+                didValidationPass, errorResponse=valiationHelper.validateShipNode(orderCreationObj,didValidationPass)
                 
                 if didValidationPass is False:
                    return errorResponse
                    
             if didValidationPass:
 
-                didValidationPass, errorResponse=valiationHelper.validateDataFromServiceSkillTable(orderCreationMSG,didValidationPass)
+                didValidationPass, errorResponse=valiationHelper.validateDataFromServiceSkillTable(orderCreationObj,didValidationPass)
                 
                 if didValidationPass is False:
                    return errorResponse
                    
             if didValidationPass:
 
-                didValidationPass, errorResponse=valiationHelper.validateDataFromItemTable(orderCreationMSG,didValidationPass)
+                didValidationPass, errorResponse=valiationHelper.validateDataFromItemTable(orderCreationObj,didValidationPass)
                 
                 if didValidationPass is False:
                    return errorResponse
                    
             if didValidationPass:
 
-                persistToDB(orderCreationMSG)
+                persistToDB(orderCreationObj)
                 response=CreateOrderResponse()
-                orderNumber=orderCreationMSG["orderNumber"]
-                countryCode=orderCreationMSG["countryCode"]
-                response.setResponseAttributes(orderNumber,countryCode)
+                response.setResponseAttributes(orderCreationObj)
             return response.successResponse()
       
-app=CreateOrderAPI()
-app.createOrder()
+#app=CreateOrderAPI()
+#app.createOrder()
 
 
 #requirements & improvements:

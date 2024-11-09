@@ -12,4 +12,4 @@ def parseRequest() ->dict:
           validate(instance=orderCreationRequest, schema=orderCreationSchema)
         except ValidationError as e:
           return (f"Schema validation error {e.message}")
-        return orderCreationRequest
+        return (orderCreationRequest)

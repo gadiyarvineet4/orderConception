@@ -1,18 +1,17 @@
-from dataclasses import dataclass
+from createOrderRequest import CreateOrderRequest
 
-@dataclass
 class CreateOrderResponse(object):
 
-    status: str = None
-    message: str = None
-    orderNumber: int = None
-    countryCode: str = None
+    status: str
+    message: str
+    orderNumber: int
+    countryCode: str
 
-    def setResponseAttributes(self, orderNumber, countryCode):
+    def setResponseAttributes(self, orderMSG:CreateOrderRequest):
         self.status="Success"
         self.message="Order has been Created in Order Management System"
-        self.orderNumber=orderNumber
-        self.countryCode=countryCode
+        self.orderNumber=orderMSG.orderNumber
+        self.countryCode=orderMSG.countryCode
 
     def successResponse(self): 
         response={

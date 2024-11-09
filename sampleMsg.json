@@ -1,73 +1,73 @@
 {
-    "orderNumber": 12021,
-    "countryCode": "IKEA_NL",
-    "seller": "STO.123",
-    "orderType": "HOME_DELIVERY",
-    "orderDate": "2024-10-17T18:25:43.511Z",
-    "shipToAddress": {
-        "customerFirstName": "Vineet",
-        "customerLastName": "Gadiyar",
-        "customerPhoneNumber": 9152687334,
-        "customerAddressLine1": "Mumbai",
-        "customerAddressLine2": "India",
-        "customerState": "Maharashtra",
-        "customerZipCode": 400081
+    "orderNumber":12018,
+    "countryCode":"IKEA_NL",
+    "seller":"STO.123",
+    "orderType":"HOME_DELIVERY",
+    "orderDate":"2024-10-17T18:25:43.511Z",
+    "shipToAddress":{
+       "customerFirstName":"Vineet",
+       "customerLastName":"Gadiyar",
+       "customerPhoneNumber":9152687334,
+       "customerAddressLine1":"Mumbai",
+       "customerAddressLine2":"India",
+       "customerState":"Maharashtra",
+       "customerZipCode":400081
     },
-    "billToAddress": {
-        "customerFirstName": "Vineet",
-        "customerLastName": "Gadiyar",
-        "customerPhoneNumber": 9152687334,
-        "customerAddressLine1": "Mumbai",
-        "customerAddressLine2": "India",
-        "customerState": "Maharashtra",
-        "customerZipCode": 400081
+    "billToAddress":{
+       "customerFirstName":"Vineet",
+       "customerLastName":"Gadiyar",
+       "customerPhoneNumber":9152687334,
+       "customerAddressLine1":"Mumbai",
+       "customerAddressLine2":"India",
+       "customerState":"Maharashtra",
+       "customerZipCode":400081
     },
-    "charges": {
-        "total": 1000,
-        "itemTotal": 800,
-        "deliveryTotal": 100,
-        "tax": 100
+    "charges":{
+       "total":1000,
+       "itemTotal":800,
+       "deliveryTotal":100,
+       "tax":100
     },
-    "paymentInfo": {
-        "status": "Paid",
-        "paymentType": "Online"
+    "paymentInfo":{
+       "status":"Paid",
+       "paymentType":"Online"
     },
-    "itemLines": [
-        {
-            "itemType": "ART",
-            "itemId": 100,
-            "itemName": "Laptop",
-            "quantity": 1,
-            "price": 30,
-            "sku": "LAPTOP-001",
-            "description": "15-inch laptop with 16GB RAM",
-            "ship_node": "STO.123"
-        },
-        {
-            "itemType": "ART",
-            "itemId": 101,
-            "itemName": "Wireless Mouse",
-            "quantity": 2,
-            "price": 50,
-            "sku": "MOUSE-001",
-            "description": "Ergonomic wireless mouse",
-            "ship_node": "STO.123"
-        },
-        {
-            "itemType": "ART",
-            "itemId": 102,
-            "itemName": "HDMI Cable",
-            "quantity": 1,
-            "price": 20,
-            "sku": "CABLE-001",
-            "description": "High-speed HDMI cable",
-            "ship_node": "STO.123"
-        }
+    "itemLines":[
+       {
+          "itemType":"ART",
+          "itemId":100,
+          "itemName":"Laptop",
+          "quantity":1,
+          "price":30,
+          "sku":"LAPTOP-001",
+          "description":"15-inch laptop with 16GB RAM",
+          "ship_node":"STO.123"
+       },
+       {
+          "itemType":"ART",
+          "itemId":101,
+          "itemName":"Wireless Mouse",
+          "quantity":2,
+          "price":50,
+          "sku":"MOUSE-001",
+          "description":"Ergonomic wireless mouse",
+          "ship_node":"STO.123"
+       },
+       {
+          "itemType":"ART",
+          "itemId":102,
+          "itemName":"HDMI Cable",
+          "quantity":1,
+          "price":20,
+          "sku":"CABLE-001",
+          "description":"High-speed HDMI cable",
+          "ship_node":"STO.123"
+       }
     ],
-    "workOrder": {
-        "workOrderNumber": 12345,
-        "workOrderSGR": "SGR100",
-        "appointmentStartTime": "2024-10-19T18:25:43.511Z",
-        "appointmentEndTime": "2024-10-19T20:25:43.511Z"
+    "workOrder":{
+       "workOrderNumber":12345,
+       "workOrderSGR":"SGR100",
+       "appointmentStartTime":"2024-10-19T18:25:43.511Z",
+       "appointmentEndTime":"2024-10-19T20:25:43.511Z"
     }
-}
+ }
