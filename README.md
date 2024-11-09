@@ -1,6 +1,8 @@
-oms built using python
+spartaOMS consists of two API's: orderCreation & orderRelease 
 
-//7th November 2024
+v1 ready: 
+orderCreation: will perform validation wrt business logic and persist the order in DB
 
-Contains createOrder API
-  performs validation with respect to business logic and persists the order in database upon succesful validation.
+yet to launch: 
+orderRelease: will release the order to stores & cdc's
+

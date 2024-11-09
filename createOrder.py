@@ -53,6 +53,7 @@ class CreateOrderAPI(object):
                 persistToDB(orderCreationObj)
                 response=CreateOrderResponse()
                 response.setResponseAttributes(orderCreationObj)
+                
             return response.successResponse()
       
 #requirements & improvements:
