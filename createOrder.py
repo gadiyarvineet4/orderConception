@@ -1,16 +1,14 @@
-from parseRequest import parseRequest
 from persistToDB import persistToDB
 from createOrderResponse import CreateOrderResponse
 from createOrderRequest import CreateOrderRequest
 from requestValidation import RequestValidation
-from pydantic import BaseModel
 
 class CreateOrderAPI(object):
 
     def __init__(self) -> None:
         pass
 
-    def createOrder(self, orderCreationObj):
+    def createOrder(self, orderCreationObj:CreateOrderRequest):
     
             #orderCreationObj=parseRequest()
             #changes to accept req as object
