@@ -1,5 +1,4 @@
 from addressModel import Address
-from chargesModel import Charges
 from paymentInfoModel import PaymentInfo
 from itemLinesModel import ItemLines
 from workOrderModel import WorkOrder
@@ -9,6 +8,7 @@ from typing import List
 
 class CreateOrderRequest(BaseModel):
 
+    #start order header
     orderNumber: int
     countryCode: str
     seller: str
@@ -16,7 +16,7 @@ class CreateOrderRequest(BaseModel):
     orderDate: str
     shipToAddress: Address
     billToAddress: Address
-    charges: Charges
+    #end order header
     paymentInfo: PaymentInfo
     itemLines: List[ItemLines]
     workOrder: WorkOrder

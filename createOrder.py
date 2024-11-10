@@ -1,7 +1,7 @@
-from persistToDB import persistToDB
 from createOrderResponse import CreateOrderResponse
 from createOrderRequest import CreateOrderRequest
 from requestValidation import RequestValidation
+from persistOrderDB import PersistOrderDB
 
 class CreateOrderAPI(object):
 
@@ -50,7 +50,8 @@ class CreateOrderAPI(object):
                    
             if didValidationPass:
 
-                persistToDB(orderCreationObj)
+                saveOrderToDB=PersistOrderDB()
+                saveOrderToDB.persistOrderDB(orderCreationObj)
                 response=CreateOrderResponse()
                 response.setResponseAttributes(orderCreationObj)
                 

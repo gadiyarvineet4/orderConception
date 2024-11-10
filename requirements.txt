@@ -1,4 +1,5 @@
 #requirements & improvements:
+    #enable timer logs to eval perf of methods
     #change wrt cloud: input, db access
     #Try except block around db invoke
     #Try except block around implementation

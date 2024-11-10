@@ -5,6 +5,8 @@ class ItemLines(BaseModel):
     itemId: int
     itemName: str
     quantity: int
+    itemLineNo: int
+    deliveryLineNo: int
     price: float
     sku: str
     description: str
