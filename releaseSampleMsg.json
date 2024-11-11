@@ -1,0 +1,51 @@
+{
+    "shipAdviceNo": 12345,
+    "ship_node":"STO.123",
+    "orderType":"HOME_DELIVERY",
+    "expected_ship_date":"2024-10-19T18:25:43.511Z",
+
+    "shipToAddress":{
+        "customerFirstName":"Vineet",
+        "customerLastName":"Gadiyar",
+        "customerPhoneNumber":9152687334,
+        "customerAddressLine1":"Mumbai",
+        "customerAddressLine2":"India",
+        "customerState":"Maharashtra",
+        "customerZipCode":400081
+     },
+
+     "itemLines":[
+      {
+         "itemType":"ART",
+         "itemId":100,
+         "itemName":"Laptop",
+         "quantity":1,
+         "itemLineNo":1,
+         "description":"15-inch laptop with 16GB RAM"
+      },
+      {
+         "itemType":"ART",
+         "itemId":101,
+         "itemName":"Wireless Mouse",
+         "quantity":2,
+         "itemLineNo":2,
+         "description":"Ergonomic wireless mouse"
+      },
+      {
+         "itemType":"ART",
+         "itemId":102,
+         "itemName":"HDMI Cable",
+         "quantity":1,
+         "itemLineNo":3,
+         "description":"High-speed HDMI cable"
+      }
+   ],
+
+   "workOrder":{
+      "workOrderNumber":12345,
+      "workOrderSGR":"SGR100",
+      "deliveryLineNo": 1,
+      "appointmentStartTime":"2024-10-19T18:25:43.511Z",
+      "appointmentEndTime":"2024-10-19T20:25:43.511Z"
+   }
+}

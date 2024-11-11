@@ -6,3 +6,4 @@ class WorkOrder(BaseModel):
     deliveryLineNo: int
     appointmentStartTime: str
     appointmentEndTime: str
+    deliveryInstructions: str

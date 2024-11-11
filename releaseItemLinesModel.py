@@ -6,9 +6,4 @@ class ItemLines(BaseModel):
     itemName: str
     quantity: int
     itemLineNo: int
-    deliveryLineNo: int
-    price: float
-    sku: str
     description: str
-    ship_node: str
-    ship_date: str
