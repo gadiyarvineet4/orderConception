@@ -8,7 +8,6 @@ from typing import List
 
 class CreateOrderRequest(BaseModel):
 
-    #start order header
     orderNumber: int
     countryCode: str
     seller: str
@@ -16,7 +15,6 @@ class CreateOrderRequest(BaseModel):
     orderDate: str
     shipToAddress: Address
     billToAddress: Address
-    #end order header
     paymentInfo: PaymentInfo
     itemLines: List[ItemLines]
     workOrder: WorkOrder

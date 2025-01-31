@@ -19,9 +19,10 @@ class PersistOrderDB(object):
         payment_query=self.createPaymentDetailsQuery()
         order_line_query=self.createOrderLineQuery()
         work_order_query=self.createWorkOrderQuery()
-        self.executeQueries(order, order_header_query, address_query,payment_query,order_line_query,work_order_query)
+        order_status_query=self.createOrderStatusQuery()
+        self.executeQueries(order, order_header_query, address_query,payment_query,order_line_query,work_order_query,order_status_query)
 
-    def executeQueries(self,order:CreateOrderRequest, order_header_query, address_query,payment_query,order_line_query,work_order_query):
+    def executeQueries(self,order:CreateOrderRequest, order_header_query, address_query,payment_query,order_line_query,work_order_query,order_status_query):
         #try: 
             conn=psycopg2.connect(
                     dbname="postgres",
@@ -38,7 +39,7 @@ class PersistOrderDB(object):
                                     order.countryCode,
                                     order.seller,
                                     order.orderType,
-                                    datetime.strptime(order.orderDate, "%Y-%m-%dT%H:%M:%S.%fZ")))
+                                    datetime.strptime(order.orderDate, "%Y-%m-%dT%H:%M:%S.%fZ"),100))
                     
                     #address_query: shipping
             cursor.execute(address_query,(self.orderHeaderKey,
@@ -91,7 +92,9 @@ class PersistOrderDB(object):
                                         itemLines.sku,
                                         itemLines.description,
                                         itemLines.ship_node,
-                                        datetime.strptime(itemLines.ship_date, "%Y-%m-%dT%H:%M:%S.%fZ")))
+                                        datetime.strptime(itemLines.ship_date, "%Y-%m-%dT%H:%M:%S.%fZ"),
+                                        100,
+                                        False))
                     
                     #work_order_query
             cursor.execute(work_order_query,(self.workOrderKey,
@@ -101,8 +104,18 @@ class PersistOrderDB(object):
                                     order.workOrder.deliveryLineNo,
                                     datetime.strptime(order.workOrder.appointmentStartTime, "%Y-%m-%dT%H:%M:%S.%fZ"),
                                     datetime.strptime(order.workOrder.appointmentEndTime, "%Y-%m-%dT%H:%M:%S.%fZ"),
-                                    order.workOrder.deliveryInstructions))
-                
+                                    order.workOrder.deliveryInstructions, 100
+                                    ))
+                    #order_status_query
+            cursor.execute(order_status_query,(order.orderNumber,
+                                    self.orderHeaderKey, 
+                                    100,
+                                    100,
+                                    self.workOrderKey,
+                                    1100,
+                                    'preReleaseHold',
+                                    datetime.strptime(order.orderDate, "%Y-%m-%dT%H:%M:%S.%fZ")
+                                    ))
             conn.commit()
 
             #except psycopg2.IntegrityError as e:
@@ -130,7 +143,7 @@ class PersistOrderDB(object):
             
     def createOrderHeaderQuery(self):
 
-        order_header_query= "INSERT INTO order_header (order_header_key, order_number, country_code, seller, order_type, order_date) VALUES (%s, %s, %s, %s, %s, %s)"
+        order_header_query= "INSERT INTO order_header (order_header_key, order_number, country_code, seller, order_type, order_date, order_status) VALUES (%s, %s, %s, %s, %s, %s,%s)"
         return order_header_query
 
     def createAddressQuery(self):
@@ -145,20 +158,21 @@ class PersistOrderDB(object):
 
     def createOrderLineQuery(self):
         
-        order_line_query="INSERT INTO order_line(order_header_key,order_line_key,order_number,ship_advice_no,item_type,item_id,item_name,quantity,item_line_no,delivery_line_no,price,sku,description,ship_node,ship_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s,%s)"
+        order_line_query="INSERT INTO order_line(order_header_key,order_line_key,order_number,ship_advice_no,item_type,item_id,item_name,quantity,item_line_no,delivery_line_no,price,sku,description,ship_node,ship_date,line_status,release_attempted) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         return order_line_query
 
     def createWorkOrderQuery(self):
-        work_order_query="INSERT INTO work_order(work_order_key,order_header_key,work_order_number,work_order_sgr,delivery_line_no,appointment_start_time,appointment_end_time,delivery_instructions) VALUES (%s, %s, %s, %s, %s, %s, %s,%s)"
+        work_order_query="INSERT INTO work_order(work_order_key,order_header_key,work_order_number,work_order_sgr,delivery_line_no,appointment_start_time,appointment_end_time,delivery_instructions,work_order_status) VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s)"
         return work_order_query
     
     def generateShipAdviceNo(self):
+        return random.randint(999,9999)
+    
+    def createOrderStatusQuery(self):
+        order_status_query="INSERT INTO sales_order_status(order_number, order_header_key,order_status,work_order_status,work_order_key,order_hold,order_hold_type,order_date) VALUES (%s, %s, %s, %s, %s, %s, %s,%s)"
+        return order_status_query
 
-        shipAdviceNo=random.randint(999,9999)
-        return shipAdviceNo
-
-    def generateKey(self):
-            
+    def generateKey(self):    
         currDateTime = datetime.now().strftime("%Y%m%d%H%M%S")
         orderKey=currDateTime + str(random.randint(9999,99999))
         return orderKey

@@ -13,3 +13,39 @@
     #improve error codes/desc/desc/info
     #stress test
     #populate db with dummy data
+
+Order Statuses:
+    Order Created: 100
+    Order Released: 150
+    Order Backordered: 50
+
+Order Line Statuses:
+    Order Line Created: 100
+    Order Line Released: 150
+    Order Line Backordered: 50
+
+releaseOrderFlow: 
+    calculateAvailDateAgent:
+       It will pick 50 orders at a time from order_status table with status: 100(created). 
+       It will invoke calculateAvailDateAPI for each order.
+       Populate taskq with details.
+       
+    releaseOrderAgent:
+       It will pick up orders from taskq and invoke releaseOrderAPI.
+
+calculateAvailDateAPI: 
+    check if ship_date is in the past
+        if yes: backorder the order
+            exit
+        else: 
+            fetch notif time for respective ship_node and service_type
+            release date calculation logic:
+            assume dispatch: 2024-11-12 12:00:00 PM
+            notif time for sgr: 12 hrs
+            release date: ship date - min notif time
+            stamp availDate and push to taskq
+
+releaseOrderAPI
+    pull order from taskq
+    create releaseOrderMsg based on releaseOrderModel
+    post it to the topic where it will be consumed by WMS
